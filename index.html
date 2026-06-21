@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Restoran More — Šibenik · Riba i plodovi mora</title>
+<meta name="description" content="Restoran More — riblji restoran na rivi u Šibeniku. Svježa jadranska riba, školjke i plodovi mora, dalmatinska kuhinja uz more. Rezervirajte stol: 091 988 8602.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#07111F;
+  --bg2:#0B1A2C;
+  --teal:#3E8C92;
+  --teal-bright:#5FB7BD;
+  --sand:#C9A86A;
+  --cream:#EDE6D6;
+  --cream-dim:rgba(237,230,214,.62);
+  --line:rgba(95,183,189,.18);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:auto}
+body{
+  background:var(--bg);
+  color:var(--cream);
+  font-family:'DM Sans',sans-serif;
+  font-weight:300;
+  line-height:1.7;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;font-weight:500;line-height:1.08}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+.eyebrow{
+  font-family:'DM Sans',sans-serif;
+  font-weight:500;
+  font-size:.72rem;
+  letter-spacing:.34em;
+  text-transform:uppercase;
+  color:var(--teal-bright);
+}
+
+/* HEADER */
+header{
+  position:fixed;top:0;left:0;width:100%;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:22px 36px;
+  transition:background .5s ease, padding .5s ease, border-color .5s ease;
+  border-bottom:1px solid transparent;
+}
+header.scrolled{
+  background:rgba(7,17,31,.82);
+  backdrop-filter:blur(14px);
+  padding:14px 36px;
+  border-bottom:1px solid var(--line);
+}
+.logo{font-family:'Cormorant Garamond',serif;font-size:1.7rem;letter-spacing:.04em;color:var(--cream)}
+.logo span{color:var(--teal-bright)}
+nav.main{display:flex;gap:30px;align-items:center}
+nav.main a{font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cream-dim);transition:color .3s}
+nav.main a:hover{color:var(--cream)}
+.btn-res{
+  font-family:'DM Sans',sans-serif;font-weight:500;
+  font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;
+  border:1px solid var(--teal);
+  color:var(--cream);
+  padding:11px 22px;border-radius:2px;
+  background:transparent;cursor:pointer;
+  transition:background .35s,color .35s,border-color .35s;
+}
+.btn-res:hover{background:var(--teal);border-color:var(--teal);color:#04101a}
+.nav-links{display:flex;gap:30px;align-items:center}
+.burger{display:none;background:none;border:none;color:var(--cream);font-size:1.4rem;cursor:pointer}
+
+/* HERO */
+.hero{position:relative;height:100vh;min-height:640px;width:100%;overflow:hidden;display:flex;align-items:flex-end}
+.hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
+.hero-bg img{width:100%;height:100%;object-fit:cover;transform:scale(1.18);will-change:transform}
+.hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,17,31,.55) 0%,rgba(7,17,31,.25) 40%,rgba(7,17,31,.92) 100%)}
+.horizon{position:absolute;top:54%;left:0;width:100%;height:1px;background:linear-gradient(90deg,transparent,rgba(95,183,189,.5),transparent);z-index:1;transform:scaleX(0);transform-origin:center}
+.hero-inner{position:relative;z-index:2;padding-bottom:8vh;width:100%}
+.hero h1{font-size:clamp(3.2rem,9vw,7.4rem);font-weight:400;letter-spacing:.01em}
+.hero h1 em{font-style:italic;color:var(--teal-bright)}
+.hero .lead{
+  font-size:clamp(1rem,1.5vw,1.22rem);
+  max-width:540px;margin-top:22px;color:var(--cream-dim);font-weight:300;
+}
+.hero .meta{margin-top:30px;display:flex;gap:26px;flex-wrap:wrap;font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;color:var(--cream-dim)}
+.hero .meta span{color:var(--sand)}
+
+.reveal{opacity:0}
+.word{display:inline-block;overflow:hidden}
+.word i{display:inline-block;font-style:inherit}
+
+/* SECTIONS */
+section{position:relative}
+.pad{padding:120px 0}
+.manifest{text-align:center}
+.manifest p{font-family:'Cormorant Garamond',serif;font-size:clamp(1.7rem,3.6vw,2.9rem);line-height:1.3;font-weight:400;max-width:880px;margin:24px auto 0;color:var(--cream)}
+.manifest p em{font-style:italic;color:var(--teal-bright)}
+
+/* WAVE DIVIDER */
+.wave-div{width:100%;line-height:0;color:var(--bg2)}
+.wave-div svg{width:100%;height:60px;display:block}
+
+/* STORY */
+.story{background:var(--bg2)}
+.story-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:64px;align-items:center}
+.story-grid h2{font-size:clamp(2.2rem,4.5vw,3.4rem);font-weight:400;margin-bottom:24px}
+.story-grid h2 em{font-style:italic;color:var(--sand)}
+.story-grid p{color:var(--cream-dim);margin-bottom:18px;font-size:1.02rem}
+.story-media{position:relative}
+.story-media img{width:100%;height:560px;object-fit:cover;border-radius:2px}
+.story-media .badge{
+  position:absolute;bottom:-26px;left:-26px;background:var(--bg);
+  border:1px solid var(--line);padding:22px 30px;border-radius:2px;
+}
+.story-media .badge b{font-family:'Cormorant Garamond',serif;font-size:2.4rem;color:var(--sand);display:block;line-height:1}
+.story-media .badge small{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--cream-dim)}
+
+/* MENU */
+.menu-head{text-align:center;margin-bottom:70px}
+.menu-head h2{font-size:clamp(2.4rem,5vw,3.8rem);font-weight:400}
+.menu-head h2 em{font-style:italic;color:var(--teal-bright)}
+.menu-head .eyebrow{margin-bottom:16px;display:block}
+.menu-cols{display:grid;grid-template-columns:1fr 1fr;gap:54px 80px}
+.menu-cat h3{font-family:'Cormorant Garamond',serif;font-size:1.7rem;color:var(--sand);font-weight:500;margin-bottom:8px;font-style:italic}
+.menu-cat .catline{height:1px;background:var(--line);margin-bottom:26px}
+.menu-item{margin-bottom:24px}
+.menu-item .name{font-family:'Cormorant Garamond',serif;font-size:1.32rem;color:var(--cream);font-weight:500}
+.menu-item .desc{font-size:.92rem;color:var(--cream-dim);margin-top:3px}
+.menu-note{text-align:center;margin-top:60px;font-size:.92rem;color:var(--cream-dim);font-style:italic}
+
+/* GALLERY */
+.gallery{background:var(--bg2)}
+.gallery h2{text-align:center;font-size:clamp(2.2rem,4.5vw,3.4rem);font-weight:400;margin-bottom:14px}
+.gallery h2 em{font-style:italic;color:var(--teal-bright)}
+.gallery .sub{text-align:center;color:var(--cream-dim);margin-bottom:56px}
+.gal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;grid-auto-rows:240px}
+.gal-grid figure{overflow:hidden;border-radius:2px}
+.gal-grid figure.tall{grid-row:span 2}
+.gal-grid img{width:100%;height:100%;object-fit:cover;transition:transform .9s cubic-bezier(.2,.8,.2,1);filter:saturate(1.05)}
+.gal-grid figure:hover img{transform:scale(1.07)}
+
+/* LOCATION */
+.loc-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:stretch}
+.loc-info h2{font-size:clamp(2.2rem,4.5vw,3.4rem);font-weight:400;margin-bottom:26px}
+.loc-info h2 em{font-style:italic;color:var(--sand)}
+.loc-block{margin-bottom:28px}
+.loc-block .lbl{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--teal-bright);margin-bottom:8px}
+.loc-block p{color:var(--cream);font-size:1.04rem}
+.loc-block a{color:var(--cream);border-bottom:1px solid var(--teal)}
+.hours-row{display:flex;justify-content:space-between;max-width:340px;padding:7px 0;border-bottom:1px solid var(--line);color:var(--cream-dim);font-size:.95rem}
+.hours-row b{color:var(--cream);font-weight:400}
+.map-frame{border-radius:2px;overflow:hidden;min-height:420px;border:1px solid var(--line)}
+.map-frame iframe{width:100%;height:100%;min-height:420px;border:0;filter:grayscale(.3) contrast(1.05)}
+
+/* CTA */
+.cta{text-align:center;background:linear-gradient(180deg,var(--bg2),var(--bg))}
+.cta h2{font-size:clamp(2.4rem,5.5vw,4.2rem);font-weight:400}
+.cta h2 em{font-style:italic;color:var(--teal-bright)}
+.cta p{color:var(--cream-dim);max-width:520px;margin:20px auto 36px;font-size:1.05rem}
+.cta .phone{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3vw,2.6rem);color:var(--sand);letter-spacing:.02em}
+.cta .btn-big{display:inline-block;margin-top:30px;font-family:'DM Sans';font-weight:500;font-size:.82rem;letter-spacing:.18em;text-transform:uppercase;border:1px solid var(--teal);padding:16px 38px;color:var(--cream);border-radius:2px;cursor:pointer;transition:background .35s,color .35s}
+.cta .btn-big:hover{background:var(--teal);color:#04101a}
+
+/* FOOTER */
+footer{background:var(--bg);border-top:1px solid var(--line);padding:60px 0 40px}
+.foot-grid{display:flex;justify-content:space-between;flex-wrap:wrap;gap:36px}
+.foot-grid .logo{margin-bottom:14px}
+.foot-col p,.foot-col a{color:var(--cream-dim);font-size:.94rem;line-height:1.9}
+.foot-col h4{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--teal-bright);margin-bottom:14px}
+.foot-bottom{margin-top:48px;padding-top:24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:.8rem;color:var(--cream-dim)}
+
+/* RESERVATION PANEL */
+.res-overlay{position:fixed;inset:0;background:rgba(4,9,16,.7);backdrop-filter:blur(4px);z-index:200;opacity:0;visibility:hidden;transition:opacity .4s,visibility .4s}
+.res-overlay.open{opacity:1;visibility:visible}
+.res-panel{
+  position:fixed;top:0;right:0;height:100%;width:min(440px,100%);
+  background:var(--bg2);z-index:201;border-left:1px solid var(--line);
+  transform:translateX(100%);transition:transform .55s cubic-bezier(.5,0,.1,1);
+  padding:48px 40px;overflow-y:auto;
+}
+.res-panel.open{transform:translateX(0)}
+.res-panel .close{position:absolute;top:24px;right:28px;background:none;border:none;color:var(--cream);font-size:1.6rem;cursor:pointer}
+.res-panel .eyebrow{display:block;margin-bottom:10px}
+.res-panel h3{font-size:2.2rem;font-weight:400;margin-bottom:8px}
+.res-panel h3 em{font-style:italic;color:var(--teal-bright)}
+.res-panel p.intro{color:var(--cream-dim);font-size:.95rem;margin-bottom:28px}
+.field{margin-bottom:18px}
+.field label{display:block;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--cream-dim);margin-bottom:7px}
+.field input,.field select{width:100%;background:var(--bg);border:1px solid var(--line);color:var(--cream);padding:13px 14px;border-radius:2px;font-family:'DM Sans';font-size:.95rem}
+.field input:focus,.field select:focus{outline:none;border-color:var(--teal)}
+.res-panel .submit{width:100%;margin-top:8px;background:var(--teal);color:#04101a;border:none;padding:15px;border-radius:2px;font-family:'DM Sans';font-weight:500;letter-spacing:.14em;text-transform:uppercase;font-size:.78rem;cursor:pointer;transition:background .3s}
+.res-panel .submit:hover{background:var(--teal-bright)}
+.res-panel .or{margin-top:22px;text-align:center;font-size:.9rem;color:var(--cream-dim)}
+.res-panel .or a{color:var(--sand);border-bottom:1px solid var(--sand)}
+
+@media(max-width:900px){
+  .nav-links{
+    position:fixed;top:0;right:0;height:100vh;width:78%;max-width:320px;
+    background:var(--bg2);flex-direction:column;justify-content:center;gap:34px;
+    transform:translateX(100%);transition:transform .5s;z-index:99;border-left:1px solid var(--line);
+  }
+  .nav-links.open{transform:translateX(0)}
+  .burger{display:block;z-index:100}
+  .story-grid,.loc-grid,.menu-cols{grid-template-columns:1fr;gap:40px}
+  .story-media img{height:420px}
+  .gal-grid{grid-template-columns:1fr 1fr;grid-auto-rows:180px}
+  .pad{padding:84px 0}
+  header{padding:18px 22px}
+  header.scrolled{padding:12px 22px}
+}
+@media(max-width:560px){
+  .gal-grid{grid-template-columns:1fr;grid-auto-rows:220px}
+  .gal-grid figure.tall{grid-row:span 1}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .reveal{opacity:1!important}
+  .hero-bg img{transform:scale(1)!important}
+  .horizon{transform:scaleX(1)!important}
+}
+</style>
+</head>
+<body>
+
+<header id="header">
+  <a href="#top" class="logo">Restoran <span>More</span></a>
+  <div class="nav-links" id="navLinks">
+    <nav class="main">
+      <a href="#prica">Priča</a>
+      <a href="#jelovnik">Jelovnik</a>
+      <a href="#galerija">Galerija</a>
+      <a href="#lokacija">Lokacija</a>
+    </nav>
+    <button class="btn-res" data-open-res>Rezerviraj stol</button>
+  </div>
+  <button class="burger" id="burger" aria-label="Izbornik">☰</button>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-bg">
+    <img src="https://images.unsplash.com/photo-1505118380757-91f5f5632de0?auto=format&fit=crop&w=2000&q=80" alt="Jadransko more u suton, Šibenik">
+  </div>
+  <div class="horizon" id="horizon"></div>
+  <div class="hero-inner">
+    <div class="wrap">
+      <span class="eyebrow reveal" data-fade>Šibenik · Riblji restoran na rivi</span>
+      <h1 id="heroTitle" style="margin-top:18px"><span class="word"><i>More</i></span> <em>na tanjuru.</em></h1>
+      <p class="lead reveal" data-fade>Sve počinje od mora. Svježa jadranska riba, školjke i plodovi mora — onako kako ih daje Jadran pred Šibenikom. Sol, svjetlo i horizont.</p>
+      <div class="meta reveal" data-fade>
+        <div><span>4.2 ★</span> · ~150 recenzija</div>
+        <div>Obala dr. Franje Tuđmana 5</div>
+        <div>Dalmatinska kuhinja</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MANIFEST -->
+<section class="pad manifest">
+  <div class="wrap">
+    <span class="eyebrow reveal" data-fade>Naš manifest</span>
+    <p class="reveal" data-fade>Ime nam je <em>More</em> — jer odatle dolazi sve. Ne kuhamo protiv mora, nego s njim: <em>ono što je jutros bilo u dubini</em>, navečer je na vašem stolu. Bez buke, bez viška — samo riba, sol i otvoren horizont.</p>
+  </div>
+</section>
+
+<div class="wave-div"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path fill="currentColor" d="M0,30 C240,60 480,0 720,24 C960,48 1200,8 1440,30 L1440,60 L0,60 Z"></path></svg></div>
+
+<!-- STORY -->
+<section class="pad story" id="prica">
+  <div class="wrap story-grid">
+    <div>
+      <span class="eyebrow reveal" data-fade>Naša priča</span>
+      <h2 class="reveal" data-fade>Restoran na <em>rivi</em>, licem prema kanalu</h2>
+      <p class="reveal" data-fade>Stojimo na šibenskoj rivi, na Obali dr. Franje Tuđmana, ondje gdje se kameni stari grad spušta do mora. S terase se gleda kanal sv. Ante, brodice i otoke u daljini — isti onaj plavi horizont s kojeg svako jutro stiže naša riba.</p>
+      <p class="reveal" data-fade>Kuhamo dalmatinski, jednostavno i pošteno. Ribu na gradele, brudet, školjke na buzaru, plodove mora s maslinovim uljem s Dalmacije. Ono što priroda dade, mi samo ne pokvarimo.</p>
+      <p class="reveal" data-fade>Gostima nudimo ono najbolje što Jadran ima — uz dobru kapljicu domaćeg vina i pogled koji se ne plaća.</p>
+    </div>
+    <div class="story-media reveal" data-fade>
+      <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1100&q=80" alt="Svježa riba na ledu">
+      <div class="badge">
+        <b>4.2★</b>
+        <small>~150 recenzija</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="pad" id="jelovnik">
+  <div class="wrap">
+    <div class="menu-head">
+      <span class="eyebrow reveal" data-fade>Iz mora, na vatru</span>
+      <h2 class="reveal" data-fade>Jelovnik <em>mora</em></h2>
+    </div>
+    <div class="menu-cols">
+      <div class="menu-cat reveal" data-fade>
+        <h3>Riba</h3>
+        <div class="catline"></div>
+        <div class="menu-item"><div class="name">Riba na gradele</div><div class="desc">Cijela bijela riba dnevnog ulova, pečena na žaru, s blitvom i krumpirom te kapljom maslinova ulja.</div></div>
+        <div class="menu-item"><div class="name">Brudet od ribe</div><div class="desc">Dalmatinski brudet od više vrsta jadranske ribe, kuhan polako, poslužen s palentom.</div></div>
+        <div class="menu-item"><div class="name">Lignje na žaru</div><div class="desc">Svježe lignje s gradela, s češnjakom, peršinom i blitvom na lešo.</div></div>
+        <div class="menu-item"><div class="name">Orada u soli</div><div class="desc">Orada pečena u kori od morske soli, koja čuva svu sočnost mora.</div></div>
+      </div>
+      <div class="menu-cat reveal" data-fade>
+        <h3>Školjke</h3>
+        <div class="catline"></div>
+        <div class="menu-item"><div class="name">Dagnje na buzaru</div><div class="desc">Crne dagnje iz uzgoja Jadrana, na buzaru s bijelim vinom, češnjakom i peršinom.</div></div>
+        <div class="menu-item"><div class="name">Kvrlje na žaru</div><div class="desc">Jakopske kapice s gradela, s maslacem od limuna i začinskim biljem.</div></div>
+        <div class="menu-item"><div class="name">Kamenice s Jadrana</div><div class="desc">Svježe kamenice, otvorene pred vama, s kapljom limuna i pogledom na more.</div></div>
+        <div class="menu-item"><div class="name">Prstaci na buzaru</div><div class="desc">Nježne školjke u laganom umaku, poslužene s domaćim kruhom.</div></div>
+      </div>
+      <div class="menu-cat reveal" data-fade>
+        <h3>Plodovi mora</h3>
+        <div class="catline"></div>
+        <div class="menu-item"><div class="name">Škampi na buzaru</div><div class="desc">Jadranski škampi u umaku od rajčice, vina i češnjaka, uz tost domaćeg kruha.</div></div>
+        <div class="menu-item"><div class="name">Crni rižoto</div><div class="desc">Rižoto s sipom i njezinom tintom, mekan i pun okusa mora.</div></div>
+        <div class="menu-item"><div class="name">Plata plodova mora</div><div class="desc">Bogati pladanj za dvoje — škampi, lignje, dagnje i riba s gradela.</div></div>
+        <div class="menu-item"><div class="name">Hobotnica ispod peke</div><div class="desc">Hobotnica pečena ispod peke s krumpirom, na tradicionalan dalmatinski način.</div></div>
+      </div>
+      <div class="menu-cat reveal" data-fade>
+        <h3>Za početak</h3>
+        <div class="catline"></div>
+        <div class="menu-item"><div class="name">Pjat pršuta i sira</div><div class="desc">Dalmatinski pršut i tvrdi sir s otoka, s maslinama i domaćim kruhom.</div></div>
+        <div class="menu-item"><div class="name">Salata od hobotnice</div><div class="desc">Kuhana hobotnica s krumpirom, lukom, peršinom i maslinovim uljem.</div></div>
+        <div class="menu-item"><div class="name">Marinirani inćuni</div><div class="desc">Slani inćuni iz Jadrana, marinirani u maslinovu ulju i octu.</div></div>
+        <div class="menu-item"><div class="name">Riblja juha</div><div class="desc">Bistra juha od bijele ribe, topla i jednostavna, kao uvod u more.</div></div>
+      </div>
+    </div>
+    <p class="menu-note reveal" data-fade>Jelovnik se mijenja prema dnevnom ulovu. Za sezonske preporuke i dostupnost — slobodno nazovite.</p>
+  </div>
+</section>
+
+<div class="wave-div" style="color:var(--bg2)"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path fill="currentColor" d="M0,30 C240,0 480,60 720,36 C960,12 1200,52 1440,30 L1440,60 L0,60 Z"></path></svg></div>
+
+<!-- GALLERY -->
+<section class="pad gallery" id="galerija">
+  <div class="wrap">
+    <span class="eyebrow reveal" data-fade style="display:block;text-align:center">Galerija</span>
+    <h2 class="reveal" data-fade>Boje <em>mora i stola</em></h2>
+    <p class="sub reveal" data-fade>Šibenik, riva i ono što stiže iz dubine.</p>
+    <div class="gal-grid">
+      <figure class="tall reveal" data-fade><img src="https://images.unsplash.com/photo-1574484284002-952d92456975?auto=format&fit=crop&w=900&q=80" alt="Riba na žaru"></figure>
+      <figure class="reveal" data-fade><img src="https://images.unsplash.com/photo-1535007813616-79dc02ba4021?auto=format&fit=crop&w=900&q=80" alt="Plodovi mora"></figure>
+      <figure class="reveal" data-fade><img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&w=900&q=80" alt="More i obala"></figure>
+      <figure class="reveal" data-fade><img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=900&q=80" alt="Tanjur s morskim plodovima"></figure>
+      <figure class="tall reveal" data-fade><img src="https://images.unsplash.com/photo-1518732714860-b62714ce0c59?auto=format&fit=crop&w=900&q=80" alt="Plave dubine Jadrana"></figure>
+      <figure class="reveal" data-fade><img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?auto=format&fit=crop&w=900&q=80" alt="Svježi sastojci"></figure>
+      <figure class="reveal" data-fade><img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=900&q=80" alt="Školjke"></figure>
+      <figure class="reveal" data-fade><img src="https://images.unsplash.com/photo-1473116763249-2faaef81ccda?auto=format&fit=crop&w=900&q=80" alt="Brodice na moru"></figure>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section class="pad" id="lokacija">
+  <div class="wrap loc-grid">
+    <div class="loc-info">
+      <span class="eyebrow reveal" data-fade>Gdje smo</span>
+      <h2 class="reveal" data-fade>Na šibenskoj <em>rivi</em></h2>
+      <div class="loc-block reveal" data-fade">
+        <div class="lbl">Adresa</div>
+        <p>Obala dr. Franje Tuđmana 5<br>22000 Šibenik, Hrvatska</p>
+      </div>
+      <div class="loc-block reveal" data-fade>
+        <div class="lbl">Rezervacije</div>
+        <p><a href="tel:+385919888602">091 988 8602</a> &nbsp;·&nbsp; <a href="tel:+38522214986">022 214 986</a></p>
+      </div>
+      <div class="loc-block reveal" data-fade>
+        <div class="lbl">Radno vrijeme</div>
+        <div class="hours-row"><span>Ponedjeljak – Petak</span><b>11:00 – 23:00</b></div>
+        <div class="hours-row"><span>Subota</span><b>11:00 – 24:00</b></div>
+        <div class="hours-row"><span>Nedjelja</span><b>11:00 – 23:00</b></div>
+      </div>
+    </div>
+    <div class="map-frame reveal" data-fade>
+      <iframe src="https://maps.google.com/maps?q=Restoran+More+Sibenik&output=embed" loading="lazy" title="Restoran More — lokacija na karti"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="pad cta">
+  <div class="wrap">
+    <span class="eyebrow reveal" data-fade>Rezervacija</span>
+    <h2 class="reveal" data-fade>Stol uz <em>more</em> vas čeka</h2>
+    <p class="reveal" data-fade>Najljepši stolovi su uz samu obalu. Rezervirajte na vrijeme i prepustite se moru.</p>
+    <div class="phone reveal" data-fade>091 988 8602</div>
+    <button class="btn-big reveal" data-fade data-open-res>Rezerviraj stol</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap foot-grid">
+    <div class="foot-col">
+      <div class="logo">Restoran <span>More</span></div>
+      <p>Riblji restoran na rivi u Šibeniku.<br>Svježa jadranska riba i plodovi mora.</p>
+    </div>
+    <div class="foot-col">
+      <h4>Kontakt</h4>
+      <p><a href="tel:+385919888602">091 988 8602</a><br><a href="tel:+38522214986">022 214 986</a><br>Obala dr. F. Tuđmana 5, Šibenik</p>
+    </div>
+    <div class="foot-col">
+      <h4>Radno vrijeme</h4>
+      <p>Pon – Pet: 11:00 – 23:00<br>Subota: 11:00 – 24:00<br>Nedjelja: 11:00 – 23:00</p>
+    </div>
+    <div class="foot-col">
+      <h4>Stranica</h4>
+      <p><a href="#prica">Priča</a><br><a href="#jelovnik">Jelovnik</a><br><a href="#galerija">Galerija</a><br><a href="#lokacija">Lokacija</a></p>
+    </div>
+  </div>
+  <div class="wrap foot-bottom">
+    <span>© 2026 Restoran More · Šibenik</span>
+    <span>Sve počinje od mora.</span>
+  </div>
+</footer>
+
+<!-- RESERVATION PANEL -->
+<div class="res-overlay" id="resOverlay" data-close-res></div>
+<aside class="res-panel" id="resPanel" aria-hidden="true">
+  <button class="close" data-close-res aria-label="Zatvori">×</button>
+  <span class="eyebrow">Rezervacija stola</span>
+  <h3>Stol uz <em>more</em></h3>
+  <p class="intro">Ostavite podatke i javit ćemo vam se za potvrdu, ili nas jednostavno nazovite.</p>
+  <form id="resForm">
+    <div class="field"><label>Ime i prezime</label><input type="text" required placeholder="Vaše ime"></div>
+    <div class="field"><label>Telefon</label><input type="tel" required placeholder="091 ..."></div>
+    <div class="field"><label>Datum</label><input type="date"></div>
+    <div class="field"><label>Broj osoba</label>
+      <select><option>1 osoba</option><option>2 osobe</option><option>3 osobe</option><option>4 osobe</option><option>5 osoba</option><option>6+ osoba</option></select>
+    </div>
+    <button type="submit" class="submit">Pošalji upit</button>
+  </form>
+  <p class="or">ili nazovite <a href="tel:+385919888602">091 988 8602</a></p>
+</aside>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<script>
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// Lenis smooth scroll
+let lenis;
+if(!reduceMotion){
+  lenis = new Lenis({lerp:.09,smoothWheel:true});
+  function raf(t){lenis.raf(t);requestAnimationFrame(raf)}
+  requestAnimationFrame(raf);
+  gsap.registerPlugin(ScrollTrigger);
+  lenis.on('scroll', ScrollTrigger.update);
+}else{
+  gsap.registerPlugin(ScrollTrigger);
+}
+
+// Header scrolled
+const header = document.getElementById('header');
+function onScroll(){header.classList.toggle('scrolled', window.scrollY > 40)}
+window.addEventListener('scroll', onScroll); onScroll();
+
+// Mobile nav
+const burger = document.getElementById('burger');
+const navLinks = document.getElementById('navLinks');
+burger.addEventListener('click', ()=> navLinks.classList.toggle('open'));
+navLinks.querySelectorAll('a').forEach(a=> a.addEventListener('click', ()=> navLinks.classList.remove('open')));
+
+// Anchor smooth
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const id=a.getAttribute('href');
+    if(id.length>1){
+      const el=document.querySelector(id);
+      if(el){e.preventDefault(); lenis? lenis.scrollTo(el,{offset:-70}) : el.scrollIntoView({behavior:'smooth'});}
+    }
+  });
+});
+
+if(!reduceMotion){
+  // Hero breathing zoom
+  gsap.to('.hero-bg img', {scale:1.02, duration:2.2, ease:'power2.out'});
+  gsap.to('.horizon', {scaleX:1, duration:1.8, delay:.5, ease:'power3.inOut'});
+  // Hero word + fades
+  gsap.from('#heroTitle .word i', {yPercent:120, duration:1.1, delay:.3, ease:'power4.out'});
+  gsap.from('#heroTitle em', {opacity:0, y:30, duration:1, delay:.7, ease:'power3.out'});
+  gsap.utils.toArray('.hero [data-fade]').forEach((el,i)=>{
+    gsap.to(el,{opacity:1,y:0,duration:1,delay:.9+i*.12,ease:'power3.out'});
+    gsap.set(el,{y:24});
+  });
+
+  // Scroll reveals
+  gsap.utils.toArray('section:not(.hero) [data-fade]').forEach(el=>{
+    gsap.set(el,{opacity:0,y:38});
+    gsap.to(el,{
+      opacity:1,y:0,duration:1.05,ease:'power3.out',
+      scrollTrigger:{trigger:el,start:'top 86%'}
+    });
+  });
+}else{
+  document.querySelectorAll('[data-fade]').forEach(el=>el.style.opacity=1);
+}
+
+// Reservation panel
+const resOverlay=document.getElementById('resOverlay');
+const resPanel=document.getElementById('resPanel');
+function openRes(){resOverlay.classList.add('open');resPanel.classList.add('open');resPanel.setAttribute('aria-hidden','false')}
+function closeRes(){resOverlay.classList.remove('open');resPanel.classList.remove('open');resPanel.setAttribute('aria-hidden','true')}
+document.querySelectorAll('[data-open-res]').forEach(b=>b.addEventListener('click',openRes));
+document.querySelectorAll('[data-close-res]').forEach(b=>b.addEventListener('click',closeRes));
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeRes()});
+document.getElementById('resForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  e.target.innerHTML='<p style="color:var(--teal-bright);font-family:\'Cormorant Garamond\',serif;font-size:1.4rem;text-align:center;padding:30px 0">Hvala! Javit ćemo vam se uskoro.<br>Za hitno: <a href="tel:+385919888602" style="color:var(--sand)">091 988 8602</a></p>';
+});
+</script>
+</body>
+</html>

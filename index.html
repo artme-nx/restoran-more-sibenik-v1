@@ -450,7 +450,7 @@ const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').match
 // Lenis smooth scroll
 let lenis;
 if(!reduceMotion){
-  lenis = new Lenis({lerp:.09,smoothWheel:true});
+  lenis = new Lenis({lerp:0.2, wheelMultiplier:1, smoothWheel:true, syncTouch:false});
   function raf(t){lenis.raf(t);requestAnimationFrame(raf)}
   requestAnimationFrame(raf);
   gsap.registerPlugin(ScrollTrigger);
